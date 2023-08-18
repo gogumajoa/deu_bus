@@ -8,7 +8,7 @@ function makeNoti() {
 
     let notification = new Notification("test", { // "test" => 제목
       body: "웹 알림 입니다.", // 메세지
-      icon: 'clock.JPG', // 아이콘
+      icon: `clock.JPG`, // 아이콘
     });
 
     //알림 클릭 시 이벤트
