@@ -1,8 +1,6 @@
-// service-worker.js
-
 self.addEventListener('push', event => {
   const options = {
-    body: '잠시 후 도착 예정입니다.',
+    body: 'This is the notification body',
     icon: 'clock.JPG'
   };
   
