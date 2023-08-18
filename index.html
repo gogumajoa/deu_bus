@@ -1,66 +1,48 @@
-
 <!DOCTYPE html>
-
-<html lang="kr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./main.css">
-    <title>index</title>
+  <title>Notification API 예제</title>
 </head>
 <body>
-    <header>
-        <div id = "head">
-            노선 상세 정보
-        </div>
-        <div id = "nav" class = "parent">
-            <div id = "direction1" class = "child">
-                동의대 본관행
-            </div>
-            <div id = "direction2" class = "child">
-                동의대 역행
-            </div>
-        </div>
-        
-      </header>
-     
-      <main>
 
-         <script src="./main.js"></script>
+<button id="show-notification">알림 보기</button>
 
-         <button id="showNotification">알림 표시</button>
-
-  <script>
-    document.getElementById('showNotification').addEventListener('click', () => {
-      if (Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            const notification = new Notification('제목', {
-              body: '내용',
-              icon: 'clock.JPG'
-            });
-
-          
-          }
-        });
-      }
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const showNotificationButton = document.getElementById('show-notification');
+  
+  showNotificationButton.addEventListener('click', function () {
+    // 사용자 동의 확인
+    if (!('Notification' in window)) {
+      alert('알림이 지원되지 않는 브라우저입니다.');
+    } else if (Notification.permission === 'granted') {
+      // 이미 알림 권한이 있는 경우
+      showNotification();
+    } else if (Notification.permission !== 'denied') {
+      // 알림 권한 요청
+      Notification.requestPermission().then(function (permission) {
+        if (permission === 'granted') {
+          showNotification();
+        }
+      });
+    }
+  });
+  
+  function showNotification() {
+    const options = {
+      body: '이것은 알림 본문입니다.',
+      icon: 'notification-icon.png' // 알림 아이콘 경로
+    };
+    
+    const notification = new Notification('알림 제목', options);
+    
+    notification.addEventListener('click', function () {
+      // 알림이 클릭되었을 때 실행할 동작 정의
+      window.location.href = 'https://www.example.com';
     });
-  </script>
-      </main>
+  }
+});
+</script>
 
-        
-      <footer class = "parent">
-        <div class = "child">
-            홈
-        </div>
-        <div class = "child">
-            운행 정보
-        </div>
-      </footer>
 </body>
 </html>
-
-
-   
-
-    
