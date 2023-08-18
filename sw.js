@@ -1,13 +1,10 @@
-// sw.js
-
-self.addEventListener('push', function(event) {
+self.addEventListener('push', event => {
   const options = {
     body: event.data.text(),
-    icon: 'icon.png', // 알림 아이콘 URL
-    badge: 'clock.JPG', // 뱃지 아이콘 URL
+    icon: 'clock.JPG', // 이미지 경로를 실제 이미지로 바꿔주세요.
   };
 
   event.waitUntil(
-    self.registration.showNotification('웹 알림', options)
+    self.registration.showNotification('웹 푸시 알림', options)
   );
 });
