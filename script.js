@@ -1,11 +1,15 @@
 const pushButton = document.getElementById('pushButton');
-let swRegistration = null; // swRegistration 변수 추가
+let swRegistration = null;
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   navigator.serviceWorker.register('sw.js').then(swReg => {
-    swRegistration = swReg; // swRegistration에 할당
+    swRegistration = swReg;
     initializePushNotification();
+  }).catch(error => {
+    console.error('서비스 워커 등록 실패:', error);
   });
+} else {
+  console.error('서비스 워커 및 푸시 알림 미지원');
 }
 
 function initializePushNotification() {
@@ -17,10 +21,10 @@ function initializePushNotification() {
       };
 
       if (swRegistration) {
-        swRegistration.showNotification('웹 푸시 알림', options); // swRegistration 사용
+        swRegistration.showNotification('웹 푸시 알림', options);
       } else {
         console.error('서비스 워커 등록 객체가 설정되지 않았습니다.');
       }
-    }, 1000); // 10초(10000 밀리초) 후에 실행
+    }, 10000); // 10초(10000 밀리초) 후에 실행
   });
 }
