@@ -1,0 +1,163 @@
+body {
+  padding-top: 5%;
+  padding-bottom:5%
+  /* 생략 */
+}
+
+.v-line {
+    border-left: thick solid #0d00ff;
+    height: 100%;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* .all {
+    display: flex; 
+  } */
+
+.dot {
+    width: 12px; /* 점의 크기 조정 */
+    height: 12px; /* 점의 크기 조정 */
+    background-color: grey;
+    border-radius: 50%;
+    position: absolute;
+    top: 0%; /* 점의 위치 조정 */
+
+
+}
+.box {
+    border-bottom: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    
+}
+
+.v-line-container {
+    position: absolute;
+    top: 0;
+    left: 10%; /* 원의 위치 */
+    height: 100%;
+    width: 20px; /* 수직선의 가로 길이 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top:50%;
+}
+
+.text-container {
+    position:relative;
+    left: 20%; /* 원의 위치 */
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box p{
+    margin-top: -25%;
+}
+
+.box img {
+    width: 8%;
+    margin-right: 10%;
+}
+
+header {
+    z-index: 1;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #ddd;
+    
+  }
+  /* 노선 상세 정보 */
+ #head{
+    background-color: #0000CD;
+    height: 80px;
+    float : top;
+    color : white;
+    text-align: center;
+    line-height: 80px;
+    font-size: 25px;
+ }
+ /* 노선 방향 선택 화면 */
+ #nav{
+    background-color: white;
+    height: 60px;
+    float : top;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+ }
+ /* 동의대 본관행 */
+ #direction1{
+    margin : 10px 10px 10px 10px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #000069;
+    color : white;
+    text-align: center;
+    line-height: 40px;
+ }
+ /* 신주례LG아파트행 */
+ #direction2{
+    margin : 10px 10px 10px 10px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #B4B4DC;
+    text-align: center;
+    line-height: 40px;
+    font-weight : bold;
+ }
+
+  section {
+    padding-top: 150px; padding-bottom: 150px;
+  }
+  footer {
+    position: fixed;
+    bottom: 0; left: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #0000CD;
+    color : white;
+    text-align: center;
+    line-height: 80px;
+    font-size: 25px;
+    
+  }
+
+  li { margin:100px 0 100px 0;}
+  
+  .parent{
+    display : flex;
+  }
+  .child { 
+    flex: 1;
+  }
+
+  #bus_name{
+    background-color: #969696;
+    height: 60px;
+    float : top;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    font-weight : bold;
+ }
+
+ #bus_info{
+    background-color: #dcdcdc;
+    height: 30px;
+    float : top;
+    text-align: left;
+    line-height: 30px;
+    font-size: 15px;
+  }
+
+  main{
+    display: inline-block;
+    margin-top: 100px;
+  }
