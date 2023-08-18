@@ -5,43 +5,32 @@
 </head>
 <body>
 
-<button id="show-notification">알림 보기</button>
+    <button onclick="notifyMe()">Notify me!</button>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const showNotificationButton = document.getElementById('show-notification');
-  
-  showNotificationButton.addEventListener('click', function () {
-    // 사용자 동의 확인
-    if (!('Notification' in window)) {
-      alert('알림이 지원되지 않는 브라우저입니다.');
-    } else if (Notification.permission === 'granted') {
-      // 이미 알림 권한이 있는 경우
-      showNotification();
-    } else if (Notification.permission !== 'denied') {
-      // 알림 권한 요청
-      Notification.requestPermission().then(function (permission) {
-        if (permission === 'granted') {
-          showNotification();
-        }
-      });
-    }
-  });
-  
-  function showNotification() {
-    const options = {
-      body: '이것은 알림 본문입니다.',
-      icon: 'clock.JPG' // 알림 아이콘 경로
-    };
-    
-    const notification = new Notification('알림 제목', options);
-    
-    notification.addEventListener('click', function () {
-      // 알림이 클릭되었을 때 실행할 동작 정의
-      window.location.href = 'https://www.example.com';
+function notifyMe() {
+  if (!("Notification" in window)) {
+    // Check if the browser supports notifications
+    alert("This browser does not support desktop notification");
+  } else if (Notification.permission === "granted") {
+    // Check whether notification permissions have already been granted;
+    // if so, create a notification
+    const notification = new Notification("Hi there!");
+    // …
+  } else if (Notification.permission !== "denied") {
+    // We need to ask the user for permission
+    Notification.requestPermission().then((permission) => {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        const notification = new Notification("Hi there!");
+        // …
+      }
     });
   }
-});
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them anymore.
+}
 </script>
 
 </body>
