@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>웹 알림 테스트</title>
-
-  <script defer src="noti_test.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 푸시 알림 예제</title>
 </head>
-
 <body>
-  <button onclick="makeNoti();">알림</button>
+  <button id="subscribeButton">구독하기</button>
+  <button id="pushButton" disabled>푸시 알림 보내기</button>
+  
+  <script src="script.js"></script>
 </body>
 </html>
