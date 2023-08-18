@@ -15,6 +15,6 @@ function initializePushNotification() {
       };
 
       self.registration.showNotification('웹 푸시 알림', options);
-    }, 10000); // 10초(10000 밀리초) 후에 실행
+    }, 1000); // 10초(10000 밀리초) 후에 실행
   });
 }
