@@ -2,6 +2,7 @@ const pushButton = document.getElementById('pushButton');
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   navigator.serviceWorker.register('sw.js').then(swReg => {
+    swRegistration = swReg;
     initializePushNotification();
   });
 }
