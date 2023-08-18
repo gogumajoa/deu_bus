@@ -20,14 +20,7 @@ if ('serviceWorker' in navigator) {
               icon: 'clock.JPG'
             };
 
-            const notificationPromise = registration.showNotification('Notification Title', options);
-
-            notificationPromise.then(notification => {
-              notification.onclick = () => {
-                console.log('Notification clicked');
-                // 여기에 클릭 시 수행할 동작 추가
-              };
-            });
+            registration.showNotification('Notification Title', options);
           }, 10000); // 10초 지연
         }
       });
