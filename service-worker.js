@@ -1,16 +1,17 @@
-// Register event listener for the 'push' event.
-self.addEventListener('push', function(event) {
-  // Retrieve the textual payload from event.data (a PushMessageData object).
-  // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
-  // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
-  const payload = event.data ? event.data.text() : 'no payload';
-
-  // Keep the service worker alive until the notification is created.
+self.addEventListener('push', event => {
+  // 고정된 알림 내용과 아이콘을 설정합니다.
+  const options = {
+    body: 'This is the notification body',
+    icon: 'clock.JPG'
+  };
+  
+  // 알림을 생성하고 표시합니다.
   event.waitUntil(
-    // Show a notification with title 'ServiceWorker Cookbook' and use the payload
-    // as the body.
-    self.registration.showNotification('ServiceWorker Cookbook', {
-      body: payload,
-    })
+    self.registration.showNotification('Notification Title', options)
   );
+});
+
+self.addEventListener('notificationclick', event => {
+  console.log('Notification clicked from background');
+  // 여기에 클릭 시 수행할 동작 추가
 });
