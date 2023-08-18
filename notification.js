@@ -1,4 +1,3 @@
-// 서비스 워커 등록
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./service-worker.js')
     .then(registration => {
@@ -9,7 +8,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Notification 권한 요청
 document.querySelector('#request-notification-permission').addEventListener('click', async () => {
   try {
     const permission = await Notification.requestPermission();
@@ -19,7 +17,6 @@ document.querySelector('#request-notification-permission').addEventListener('cli
   }
 });
 
-// 알림 생성 및 표시
 document.querySelector('#show-notification').addEventListener('click', () => {
   if (Notification.permission === 'granted') {
     setTimeout(() => {
@@ -28,12 +25,14 @@ document.querySelector('#show-notification').addEventListener('click', () => {
         icon: 'clock.JPG'
       };
       
-      const notification = new Notification('Notification Title', options);
+      const notificationPromise = self.registration.showNotification('Notification Title', options);
       
-      notification.onclick = () => {
-        console.log('Notification clicked');
-        // 여기에 클릭 시 수행할 동작 추가
-      };
+      notificationPromise.then(notification => {
+        notification.onclick = () => {
+          console.log('Notification clicked');
+          // 여기에 클릭 시 수행할 동작 추가
+        };
+      });
     }, 10000); // 10초 지연
   }
 });
