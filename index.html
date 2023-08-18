@@ -28,10 +28,44 @@
 
          <script src="./main.js"></script>
 
-         <button id="request-notification-permission">Request Notification Permission</button>
-         <button id="show-notification">Show Notification</button>
-         
-         <script src="notification.js"></script>
+         <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(function(registration) {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch(function(error) {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+
+function subscribeToPush() {
+  if ('PushManager' in window) {
+    navigator.serviceWorker.ready.then(function(registration) {
+      return registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: 'your_public_key'
+      });
+    }).then(function(subscription) {
+      console.log('Push subscription:', subscription);
+    }).catch(function(error) {
+      console.error('Push subscription error:', error);
+    });
+  }
+}
+
+function sendNotification() {
+  navigator.serviceWorker.ready.then(function(registration) {
+    registration.showNotification('웹 알림', {
+      body: '알림 내용',
+      icon: 'icon.png' // 알림 아이콘 URL
+    });
+  });
+}
+</script>
+
+<button onclick="subscribeToPush()">푸시 알림 구독</button>
+<button onclick="sendNotification()">알림 보내기</button>
       </main>
 
         
