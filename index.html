@@ -28,44 +28,30 @@
 
          <script src="./main.js"></script>
 
-         <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-    .then(function(registration) {
-      console.log('Service Worker registered with scope:', registration.scope);
-    })
-    .catch(function(error) {
-      console.error('Service Worker registration failed:', error);
-    });
-}
+         <button id="showNotification">알림 표시</button>
 
-function subscribeToPush() {
-  if ('PushManager' in window) {
-    navigator.serviceWorker.ready.then(function(registration) {
-      return registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: 'your_public_key'
-      });
-    }).then(function(subscription) {
-      console.log('Push subscription:', subscription);
-    }).catch(function(error) {
-      console.error('Push subscription error:', error);
-    });
-  }
-}
+  <script>
+    document.getElementById('showNotification').addEventListener('click', () => {
+      if (Notification.permission !== 'granted') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            const notification = new Notification('제목', {
+              body: '내용',
+              icon: '알림 아이콘 URL'
+            });
 
-function sendNotification() {
-  navigator.serviceWorker.ready.then(function(registration) {
-    registration.showNotification('웹 알림', {
-      body: '알림 내용',
-      icon: 'clock.JPG' // 알림 아이콘 URL
-    });
-  });
-}
-</script>
+            notification.onclick = () => {
+              // 알림이 클릭되었을 때 수행할 동작
+            };
 
-<button onclick="subscribeToPush()">푸시 알림 구독</button>
-<button onclick="sendNotification()">알림 보내기</button>
+            notification.onclose = () => {
+              // 알림이 닫혔을 때 수행할 동작
+            };
+          }
+        });
+      }
+    });
+  </script>
       </main>
 
         
