@@ -24,7 +24,7 @@ document.querySelector('#show-notification').addEventListener('click', () => {
   if (Notification.permission === 'granted') {
     const options = {
       body: 'This is the notification body',
-      icon: 'icon.png'
+      icon: 'clock.JPG'
     };
     
     const notification = new Notification('Notification Title', options);
