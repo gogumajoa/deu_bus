@@ -1,11 +1,11 @@
+// service-worker.js
+
 self.addEventListener('push', event => {
-  // 고정된 알림 내용과 아이콘을 설정합니다.
   const options = {
-    body: 'This is the notification body',
+    body: '잠시 후 도착 예정입니다.',
     icon: 'clock.JPG'
   };
   
-  // 알림을 생성하고 표시합니다.
   event.waitUntil(
     self.registration.showNotification('Notification Title', options)
   );
