@@ -22,16 +22,18 @@ document.querySelector('#request-notification-permission').addEventListener('cli
 // 알림 생성 및 표시
 document.querySelector('#show-notification').addEventListener('click', () => {
   if (Notification.permission === 'granted') {
-    const options = {
-      body: 'This is the notification body',
-      icon: 'clock.JPG'
-    };
-    
-    const notification = new Notification('Notification Title', options);
-    
-    notification.onclick = () => {
-      console.log('Notification clicked');
-      // 여기에 클릭 시 수행할 동작 추가
-    };
+    setTimeout(() => {
+      const options = {
+        body: 'This is the notification body',
+        icon: 'clock.JPG'
+      };
+      
+      const notification = new Notification('Notification Title', options);
+      
+      notification.onclick = () => {
+        console.log('Notification clicked');
+        // 여기에 클릭 시 수행할 동작 추가
+      };
+    }, 10000); // 10초 지연
   }
 });
