@@ -1,8 +1,9 @@
 const pushButton = document.getElementById('pushButton');
+let swRegistration = null; // swRegistration 변수 추가
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   navigator.serviceWorker.register('sw.js').then(swReg => {
-    swRegistration = swReg;
+    swRegistration = swReg; // swRegistration에 할당
     initializePushNotification();
   });
 }
@@ -15,7 +16,7 @@ function initializePushNotification() {
         icon: 'clock.JPG', // 이미지 경로를 실제 이미지로 바꿔주세요.
       };
 
-      self.registration.showNotification('웹 푸시 알림', options);
+      swRegistration.showNotification('웹 푸시 알림', options); // swRegistration 사용
     }, 1000); // 10초(10000 밀리초) 후에 실행
   });
 }
